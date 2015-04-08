@@ -2,11 +2,11 @@
   "use strict";
 
   angular
-    .module('todos')
-    .controller('TodosController', TodosController);
+    .module('board')
+    .controller('BoardController', BoardController);
 
-    TodosController.$inject = ['$scope'];
-    function TodosController($scope) {
+    BoardController.$inject = ['$scope'];
+    function BoardController($scope) {
       var vm = this;
 
       vm.newItem = {};

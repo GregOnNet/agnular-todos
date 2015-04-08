@@ -11,52 +11,9 @@
   <!-- endinject -->
 </head>
 
-<body ng-controller="TodosController as todo" class="simpleDemo">
-  <div layout="row" layout-margin>
-    <div flex>
-      <!-- The dnd-list directive allows to drop elements into it.
-     The dropped data will be added to the referenced list -->
-      <ul dnd-list="todo.lists.new.items">
-        <!-- The dnd-draggable directive makes an element draggable and will
-             transfer the object that was assigned to it. If an element was
-             dragged away, you have to remove it from the original list
-             yourself using the dnd-moved attribute -->
-        <li ng-repeat="item in todo.lists.new.items" dnd-draggable="item" dnd-moved="todo.lists.new.items.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="todo.lists.new.selected = item" ng-class="{'selected': todo.lists.new.selected === item}">
-          <strong>{{ item.room }}</strong>
-          <span>{{ item.problem }}</span>
-          <span>{{ item.position }}</span>
-        </li>
-        <li ng-hide="todo.isInEditMode">
-          <md-button class="md-raised md-primary" ng-click="todo.toggleEditMode()">Hinzufügen</md-button>
-        </li>
-        <li ng-show="todo.isInEditMode">
-          <md-content>
-            <md-input-container>
-              <label>Title</label>
-              <input ng-model="todo.newItem.room">
-            </md-input-container>
+<body>
 
-            <md-input-container flex>
-              <label>Problem</label>
-              <textarea ng-model="todo.newItem.problem" columns="1" md-maxlength="150"></textarea>
-            </md-input-container>
-            <md-button ng-click="todo.toggleEditMode()">Abbrechen</md-button>
-            <md-button ng-click="todo.create(todo.newItem)">Speichern</md-button>
-          </md-content>
-
-        </li>
-      </ul>
-    </div>
-    <div flex>
-      <ul dnd-list="todo.lists.processing.items">
-        <li ng-repeat="item in todo.lists.processing.items" dnd-draggable="item" dnd-moved="todo.lists.processing.items.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="todo.lists.processing.selected = item" ng-class="{'selected': todo.lists.processing.selected === item}">
-          <strong>{{ item.room }}</strong>
-          <span>{{ item.problem }}</span>
-          <span>{{ item.position }}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <ng-view></ng-view>
 
   <!-- bower:js -->
   <!-- endinject -->

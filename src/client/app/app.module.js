@@ -5,5 +5,6 @@
     .module('todos', [
       'ngMaterial',
       'ngRoute',
-      'dndLists']);
+      'dndLists',
+      'board']);
 }());
