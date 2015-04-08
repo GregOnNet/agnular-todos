@@ -16,7 +16,7 @@ gulp.task('js-watch', ['js', 'inject'], browserSync.reload);
 gulp.task('templates-watch', ['templates'], browserSync.reload);
 
 gulp.task('watch', function() {
-  watch('./styles/*.less', function() { gulp.start('less-watch'); });
+  watch('./src/client/content/*.less', function() { gulp.start('less-watch'); });
   watch('./src/client/app/**/*.js', function() { gulp.start('js-watch'); });
   watch('./src/client/app/**/*.html', function() { gulp.start('templates-watch'); });
 });
