@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/GregOnNet/angular-todos/issues"
   },
-  "homepage": "https://github.com/GregOnNet/angular-todos"
+  "homepage": "https://github.com/GregOnNet/angular-todos",
+  "devDependencies": {
+    "gulp-less": "^3.0.2"
+  }
 }
