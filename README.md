@@ -1,4 +1,4 @@
-## Insall
+## Install
 
 ```shell
 npm install && bower install
