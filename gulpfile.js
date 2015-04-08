@@ -11,10 +11,12 @@ var browserSync     = require('browser-sync');
 
 gulp.task('less-watch', ['less', 'inject'], browserSync.reload);
 gulp.task('js-watch', ['js', 'inject'], browserSync.reload);
+gulp.task('templates-watch', ['templates'], browserSync.reload);
 
 gulp.task('watch', function() {
   watch('./styles/*.less', function() { gulp.start('less-watch'); });
   watch('./src/client/app/**/*.js', function() { gulp.start('js-watch'); });
+  watch('./src/client/app/**/*.html', function() { gulp.start('templates-watch'); });
 });
 
 gulp.task('less', function() {
@@ -26,6 +28,11 @@ gulp.task('less', function() {
 gulp.task('js', function() {
   gulp.src('./src/client/app/**/*.js')
       .pipe(angularFilesort())
+      .pipe(gulp.dest('./build-dev/client/app/'));
+});
+
+gulp.task('templates', function() {
+  gulp.src('./src/client/app/**/*.html')
       .pipe(gulp.dest('./build-dev/client/app/'));
 });
 
@@ -42,7 +49,7 @@ gulp.task('inject', function() {
     .pipe(gulp.dest('./build-dev/client/'));
 });
 
-gulp.task('serve-dev', ['less', 'js', 'inject', 'watch'], function() {
+gulp.task('serve-dev', ['less', 'js', 'templates', 'inject', 'watch'], function() {
   browserSync({
     server: {
       baseDir: "./build-dev/client/",
