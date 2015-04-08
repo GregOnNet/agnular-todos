@@ -13,23 +13,25 @@ var streams = {
   'styles' : null
 };
 
+gulp.task('less-watch', ['less', 'inject'], browserSync.reload);
+gulp.task('js-watch', ['js', 'inject'], browserSync.reload);
+
+gulp.task('watch', function() {
+  watch('./styles/*.less', function() { gulp.start('less-watch'); });
+  watch('./src/client/app/**/*.js', function() { gulp.start('js-watch'); });
+});
+
 gulp.task('less', function() {
   streams.styles = gulp.src('./styles/*.less')
                        .pipe(less())
                        .pipe(gulp.dest('./build-dev/css/'));
 });
 
-
-gulp.task('less-watch', ['less', 'inject'], browserSync.reload);
-
 gulp.task('js', function() {
   streams.app = gulp.src('./src/client/app/**/*.js')
                     .pipe(angularFilesort())
                     .pipe(gulp.dest('./build-dev/client/app/'));
-
 });
-
-gulp.task('js-watch', ['js', 'inject'], browserSync.reload);
 
 gulp.task('inject', function() {
   var index = gulp.src('./src/client/index.html');
@@ -42,8 +44,7 @@ gulp.task('inject', function() {
     .pipe(gulp.dest('./build-dev/'));
 });
 
-gulp.task('serve-dev', ['less', 'js', 'inject', 'watch'], function(){
-
+gulp.task('serve-dev', ['less', 'js', 'inject', 'watch'], function() {
   browserSync({
     server: {
       baseDir: "./build-dev/",
@@ -52,9 +53,4 @@ gulp.task('serve-dev', ['less', 'js', 'inject', 'watch'], function(){
       }
     }
   });
-});
-
-gulp.task('watch', function() {
-  watch('./styles/*.less', function() { gulp.start('less-watch'); });
-  watch('./src/client/app/**/*.js', function() { gulp.start('js-watch'); });
 });
