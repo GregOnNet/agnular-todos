@@ -13,14 +13,14 @@ var streams = {
   'styles' : null
 };
 
-gulp.task('styles', function() {
+gulp.task('less', function() {
   streams.styles = gulp.src('./styles/*.less')
                        .pipe(less())
                        .pipe(gulp.dest('./build-dev/css/'));
 });
 
 
-gulp.task('less-watch', ['styles', 'inject'], browserSync.reload);
+gulp.task('less-watch', ['less', 'inject'], browserSync.reload);
 
 gulp.task('js', function() {
   streams.app = gulp.src('./src/client/app/**/*.js')
@@ -42,7 +42,7 @@ gulp.task('inject', function() {
     .pipe(gulp.dest('./build-dev/'));
 });
 
-gulp.task('serve-dev', ['styles', 'js', 'inject', 'watch'], function(){
+gulp.task('serve-dev', ['less', 'js', 'inject', 'watch'], function(){
 
   browserSync({
     server: {
