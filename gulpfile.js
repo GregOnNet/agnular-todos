@@ -1,33 +1,48 @@
 'use strict';
 
 var gulp            = require('gulp');
+var watch           = require('gulp-watch');
 var less            = require('gulp-less');
 var bower           = require('main-bower-files');
 var inject          = require('gulp-inject');
 var angularFilesort = require('gulp-angular-filesort');
 var browserSync     = require('browser-sync');
 
-var appStyles = gulp.src('./styles/*.less')
-                    .pipe(less())
-                    .pipe(gulp.dest('./build-dev/css/'));
+var streams = {
+  'app'    : null,
+  'styles' : null
+};
 
-var appFiles = gulp.src('./src/client/app/**/*.js')
-                   .pipe(angularFilesort())
-                   .pipe(gulp.dest('./build-dev/client/app/'));
+gulp.task('styles', function() {
+  streams.styles = gulp.src('./styles/*.less')
+                       .pipe(less())
+                       .pipe(gulp.dest('./build-dev/css/'));
+});
+
+
+gulp.task('less-watch', ['styles', 'inject'], browserSync.reload);
+
+gulp.task('js', function() {
+  streams.app = gulp.src('./src/client/app/**/*.js')
+                    .pipe(angularFilesort())
+                    .pipe(gulp.dest('./build-dev/client/app/'));
+
+});
+
+gulp.task('js-watch', ['js', 'inject'], browserSync.reload);
 
 gulp.task('inject', function() {
-
   var index = gulp.src('./src/client/index.html');
   var bowerFiles = gulp.src(bower(), { read: false });
 
   index
-    .pipe(inject(appFiles,   { name: 'app', ignorePath : 'build-dev' }))
-    .pipe(inject(appStyles,  { name: 'app', ignorePath : 'build-dev' }))
+    .pipe(inject(streams.app,    { name: 'app', ignorePath : 'build-dev' }))
+    .pipe(inject(streams.styles, { name: 'app', ignorePath : 'build-dev' }))
     .pipe(inject(bowerFiles, { name: 'bower' }))
     .pipe(gulp.dest('./build-dev/'));
 });
 
-gulp.task('serve-dev', ['inject'], function(){
+gulp.task('serve-dev', ['styles', 'js', 'inject', 'watch'], function(){
 
   browserSync({
     server: {
@@ -37,4 +52,9 @@ gulp.task('serve-dev', ['inject'], function(){
       }
     }
   });
+});
+
+gulp.task('watch', function() {
+  watch('./styles/*.less', function() { gulp.start('less-watch'); });
+  watch('./src/client/app/**/*.js', function() { gulp.start('js-watch'); });
 });
