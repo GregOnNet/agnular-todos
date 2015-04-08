@@ -1,28 +1,27 @@
 <!doctype html>
 <html ng-app="todos">
-  <head>
-    <title>ToDos</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" href="bower_components/angular-drag-and-drop-lists/demo/simple/simple.css">
-  </head>
-  <body ng-controller="TodosController as todo" class="simpleDemo">
-    <!-- The dnd-list directive allows to drop elements into it.
+
+<head>
+  <title>ToDos</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+  <link rel="stylesheet" href="bower_components/angular-drag-and-drop-lists/demo/simple/simple.css">
+</head>
+
+<body ng-controller="TodosController as todo" class="simpleDemo">
+  <div layout="row" layout-margin>
+    <div flex>
+      <!-- The dnd-list directive allows to drop elements into it.
      The dropped data will be added to the referenced list -->
-    <ul dnd-list="todo.lists.new.items">
+      <ul dnd-list="todo.lists.new.items">
         <!-- The dnd-draggable directive makes an element draggable and will
              transfer the object that was assigned to it. If an element was
              dragged away, you have to remove it from the original list
              yourself using the dnd-moved attribute -->
-        <li ng-repeat="item in todo.lists.new.items"
-            dnd-draggable="item"
-            dnd-moved="todo.lists.new.items.splice($index, 1)"
-            dnd-effect-allowed="move"
-            dnd-selected="todo.lists.new.selected = item"
-            ng-class="{'selected': todo.lists.new.selected === item}">
-            <strong>{{ item.room }}</strong>
-            <span>{{ item.problem }}</span>
-            <span>{{ item.position }}</span>
+        <li ng-repeat="item in todo.lists.new.items" dnd-draggable="item" dnd-moved="todo.lists.new.items.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="todo.lists.new.selected = item" ng-class="{'selected': todo.lists.new.selected === item}">
+          <strong>{{ item.room }}</strong>
+          <span>{{ item.problem }}</span>
+          <span>{{ item.position }}</span>
         </li>
         <li ng-hide="todo.isInEditMode">
           <md-button class="md-raised md-primary" ng-click="todo.toggleEditMode()">Hinzufügen</md-button>
@@ -43,31 +42,29 @@
           </md-content>
 
         </li>
-    </ul>
-
-    List 2
-    <ul dnd-list="todo.lists.processing.items">
-      <li ng-repeat="item in todo.lists.processing.items"
-          dnd-draggable="item"
-          dnd-moved="todo.lists.processing.items.splice($index, 1)"
-          dnd-effect-allowed="move"
-          dnd-selected="todo.lists.processing.selected = item"
-          ng-class="{'selected': todo.lists.processing.selected === item}"
-          >
+      </ul>
+    </div>
+    <div flex>
+      <ul dnd-list="todo.lists.processing.items">
+        <li ng-repeat="item in todo.lists.processing.items" dnd-draggable="item" dnd-moved="todo.lists.processing.items.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="todo.lists.processing.selected = item" ng-class="{'selected': todo.lists.processing.selected === item}">
           <strong>{{ item.room }}</strong>
           <span>{{ item.problem }}</span>
           <span>{{ item.position }}</span>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
 
-    <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
 
-    <script src="todos.js"></script>
+  <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
 
-  </body>
+  <script src="todos.js"></script>
+
+</body>
+
 </html>
