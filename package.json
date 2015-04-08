@@ -1,0 +1,24 @@
+{
+  "name": "angular-todos",
+  "version": "0.0.1",
+  "description": "An app managing todos in different lists. Drag&Drop enabled.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregOnNet/angular-todos.git"
+  },
+  "keywords": [
+    "angular",
+    "todos",
+    "fun"
+  ],
+  "author": "Gregor Woiwode",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GregOnNet/angular-todos/issues"
+  },
+  "homepage": "https://github.com/GregOnNet/angular-todos"
+}
