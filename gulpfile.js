@@ -9,6 +9,8 @@ var inject          = require('gulp-inject');
 var angularFilesort = require('gulp-angular-filesort');
 var browserSync     = require('browser-sync');
 
+gulp.task('build-dev', ['less', 'js', 'templates', 'inject']);
+
 gulp.task('less-watch', ['less', 'inject'], browserSync.reload);
 gulp.task('js-watch', ['js', 'inject'], browserSync.reload);
 gulp.task('templates-watch', ['templates'], browserSync.reload);
@@ -49,7 +51,7 @@ gulp.task('inject', function() {
     .pipe(gulp.dest('./build-dev/client/'));
 });
 
-gulp.task('serve-dev', ['less', 'js', 'templates', 'inject', 'watch'], function() {
+gulp.task('serve-dev', ['build-dev', 'watch'], function() {
   browserSync({
     server: {
       baseDir: "./build-dev/client/",
