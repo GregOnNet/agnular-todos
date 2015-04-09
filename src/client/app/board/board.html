@@ -13,8 +13,8 @@
         <span>{{ item.problem }}</span>
         <span>{{ item.position }}</span>
       </li>
-      <li ng-hide="board.isInEditMode">
-        <md-button class="md-raised md-primary" ng-click="board.toggleEditMode()">Hinzufügen</md-button>
+      <li ng-hide="board.isInEditMode" class="bottom-bar">
+        <a href="" ng-click="board.toggleEditMode()" class="open-item-composer">Störung hinzufügen ...</a>
       </li>
       <li ng-show="board.isInEditMode">
         <md-content>
