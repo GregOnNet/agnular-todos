@@ -1,7 +1,8 @@
 <div layout="row" layout-margin>
-  <div flex>
-    <!-- The dnd-list directive allows to drop elements into it.
-   The dropped data will be added to the referenced list -->
+  <div flex class="list">
+    <div class="list-header">
+      <h2 class="list-header-name">Neu</h2>
+    </div>
     <ul dnd-list="board.lists.new.items">
       <!-- The dnd-draggable directive makes an element draggable and will
            transfer the object that was assigned to it. If an element was
@@ -33,7 +34,12 @@
       </li>
     </ul>
   </div>
-  <div flex>
+
+  <div flex class="list">
+    <div class="list-header">
+      <h2 class="list-header-name">In Bearbeitung</h2>
+    </div>
+
     <ul dnd-list="board.lists.processing.items">
       <li ng-repeat="item in board.lists.processing.items" dnd-draggable="item" dnd-moved="board.lists.processing.items.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="board.lists.processing.selected = item" ng-class="{'selected': board.lists.processing.selected === item}">
         <strong>{{ item.room }}</strong>
