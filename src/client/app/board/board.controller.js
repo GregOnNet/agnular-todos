@@ -23,6 +23,8 @@
         }
       };
 
+      vm.categories = [];
+
       vm.create = create;
       vm.toggleEditMode = toggleEditMode;
 
@@ -42,6 +44,8 @@
         for( var i = 1; i <= 5; i++) {
           vm.lists.new.items.push({ 'id' : getRandomInt(), 'room' : 'B43' + i, 'problem' : i + '. Monitor broken!'});
           vm.lists.processing.items.push({ 'id': getRandomInt(), 'room' : 'A43' + i, 'problem' : i + '. Monitor broken!'});
+
+          vm.categories.push({ 'id': getRandomInt(), 'name': 'Kategorie ' + i});
         }
       }
 
