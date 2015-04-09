@@ -47,6 +47,7 @@ h2 {
   max-width: 270px;
 
   ul {
+    margin-bottom:0;
     list-style-type: none;
     padding-left: @base-padding;
 
@@ -60,6 +61,35 @@ h2 {
       position: relative;
       padding: @base-padding;
       margin-bottom: @base-padding;
+    }
+
+    li.bottom-bar {
+      border-radius: @base-border-radius @base-border-radius 0 0;
+      border-bottom: 0;
+      background-color: transparent;
+      display: block;
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+      padding: 8px 10px;
+      margin-bottom: 0;
+      position: relative;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      &:hover {
+        background-color: #cdd2d4;
+        color: #4d4d4d;
+        text-decoration: underline
+      }
+
+      .open-item-composer {
+        color: #8c8c8c;
+        text-decoration: none;
+      }
     }
   }
 }
