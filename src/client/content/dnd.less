@@ -1,8 +1,24 @@
 .list {
+  
+  /**
+  * An element with .dndPlaceholder class will be
+  * added to the dnd-list while the user is dragging
+  * over it.
+  */
   ul[dnd-list] .dndPlaceholder {
     display: block;
     background-color: #A4A4A4;
     min-height: 42px;
     border-bootom: 0;
+  }
+
+  /**
+  * The dndDraggingSource class will be applied to
+  * the source element of a drag operation. It makes
+  * sense to hide it to give the user the feeling
+  * that he's actually moving it.
+  */
+  ul[dnd-list] .dndDraggingSource {
+    display: none;
   }
 }
