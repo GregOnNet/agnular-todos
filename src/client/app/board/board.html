@@ -9,9 +9,13 @@
            dragged away, you have to remove it from the original list
            yourself using the dnd-moved attribute -->
       <li ng-repeat="item in board.lists.new.items" dnd-draggable="item" dnd-moved="board.lists.new.items.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="board.lists.new.selected = item" ng-class="{'selected': board.lists.new.selected === item}">
-        <strong>{{ item.room }}</strong>
-        <span>{{ item.problem }}</span>
-        <span>{{ item.position }}</span>
+        <div class="list-item-header">
+          <span class="list-item-header-name">{{ item.room }}</span>
+          <span class="list-item-category-badge">{{ item.category.name }}</span>
+        </div>
+        <div class="list-item-content">
+          <span>{{ item.problem }}</span>
+        </div>
       </li>
       <li ng-hide="board.isInEditMode" class="bottom-bar">
         <a href="" ng-click="board.toggleEditMode()" class="open-item-composer">Störung hinzufügen ...</a>
@@ -19,16 +23,20 @@
       <li ng-show="board.isInEditMode">
         <md-content>
           <md-input-container>
-            <label>Title</label>
+            <label>Raum</label>
             <input ng-model="board.newItem.room">
           </md-input-container>
+
+          <md-select placeholder="Kategorie auswählen" ng-model="board.newItem.category">
+            <md-option ng-value="category" ng-repeat="category in board.categories">{{category.name}}</md-option>
+          </md-select>
 
           <md-input-container flex>
             <label>Problem</label>
             <textarea ng-model="board.newItem.problem" columns="1" md-maxlength="150"></textarea>
           </md-input-container>
           <md-button ng-click="board.toggleEditMode()">Abbrechen</md-button>
-          <md-button ng-click="board.create(board.newItem)">Speichern</md-button>
+          <md-button class="no-ink md-primary" ng-click="board.create(board.newItem)">Speichern</md-button>
         </md-content>
 
       </li>
@@ -42,9 +50,13 @@
 
     <ul dnd-list="board.lists.processing.items">
       <li ng-repeat="item in board.lists.processing.items" dnd-draggable="item" dnd-moved="board.lists.processing.items.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="board.lists.processing.selected = item" ng-class="{'selected': board.lists.processing.selected === item}">
-        <strong>{{ item.room }}</strong>
-        <span>{{ item.problem }}</span>
-        <span>{{ item.position }}</span>
+        <div class="list-item-header">
+          <span class="list-item-header-name">{{ item.room }}</span>
+          <span class="list-item-category-badge">{{ item.category.name }}</span>
+        </div>
+        <div class="list-item-content">
+          <span>{{ item.problem }}</span>
+        </div>
       </li>
     </ul>
   </div>
