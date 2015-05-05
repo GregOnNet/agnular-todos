@@ -8,7 +8,7 @@ var path           = require('path');
 var app    = express();
 var router = express.Router();
 
-// var cupper = require('./cupper/api');
+var todo = require('./todo/api');
 
 app.use(express.static(path.join(__dirname , '..', '..' , 'build-dev', 'client')));
 app.use('/bower_components',  express.static(path.join(__dirname , '..', '..' , 'bower_components')));
@@ -20,7 +20,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 // router.get('/cuppers', cupper.get);
 // router.get('/cupper/:matriculationNumber', cupper.getByMatriculationNumber);
 //
-// router.post('/cupper', cupper.post);
+router.post('/create', todo.create);
 // router.put('/cupper/drinksACup', cupper.drinksACup);
 // router.put('/cupper/getsAFreeCup', cupper.getsAFreeCup);
 
