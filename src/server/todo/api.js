@@ -4,7 +4,7 @@ var Handlebars = require('handlebars');
 var Card       = require('./model');
 var response   = require('./locales-de-de.json');
 
-var cards    = [];
+var cards      = [];
 
 exports.create = function(req, res) {
 
