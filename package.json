@@ -21,6 +21,11 @@
     "url": "https://github.com/GregOnNet/angular-todos/issues"
   },
   "homepage": "https://github.com/GregOnNet/angular-todos",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.1",
+    "method-override": "^2.3.0"
+  },
   "devDependencies": {
     "browser-sync": "^2.5.3",
     "gulp": "^3.8.11",
