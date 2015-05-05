@@ -53,11 +53,6 @@ gulp.task('inject', function() {
 
 gulp.task('serve-dev', ['build-dev', 'watch'], function() {
   browserSync({
-    server: {
-      baseDir: "./build-dev/client/",
-      routes: {
-          '/bower_components': 'bower_components'
-      }
-    }
+      proxy: 'localhost:8080'
   });
 });
