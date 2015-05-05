@@ -6,5 +6,6 @@
       'ngMaterial',
       'ngRoute',
       'dndLists',
-      'board']);
+      'board',
+      'todos.api']);
 }());
