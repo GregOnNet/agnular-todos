@@ -1,0 +1,5 @@
+{
+  "success" : {
+    "createCard": "Karte {{ title }} wurde erstellt."
+  }
+}
