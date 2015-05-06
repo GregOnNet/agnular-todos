@@ -5,8 +5,8 @@
     .module('board')
     .controller('BoardController', BoardController);
 
-    BoardController.$inject = ['$scope'];
-    function BoardController($scope) {
+    BoardController.$inject = ['$scope', 'todoApi'];
+    function BoardController($scope, todoApi) {
       var vm = this;
 
       vm.newItem = {};
@@ -51,6 +51,8 @@
 
       function create(item) {
         vm.lists.new.items.unshift(item);
+        todoApi.create(item);
+        
         vm.newItem = {};
 
         vm.isInEditMode = false;
