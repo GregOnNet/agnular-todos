@@ -7,6 +7,7 @@ var less            = require('gulp-less');
 var bower           = require('main-bower-files');
 var inject          = require('gulp-inject');
 var angularFilesort = require('gulp-angular-filesort');
+var nodemon         = require('gulp-nodemon');
 var browserSync     = require('browser-sync');
 
 gulp.task('build-dev', ['less', 'js', 'templates', 'inject']);
@@ -51,8 +52,16 @@ gulp.task('inject', function() {
     .pipe(gulp.dest('./build-dev/client/'));
 });
 
-gulp.task('serve-dev', ['build-dev', 'watch'], function() {
+gulp.task('serve-dev', ['build-dev', 'watch', 'run-express'], function() {
   browserSync({
       proxy: 'localhost:8080'
+  });
+});
+
+gulp.task('run-express', function(done) {
+  return nodemon({
+    script : 'src/server/server.js'
+  }).on('start', function(){
+    done();
   });
 });
