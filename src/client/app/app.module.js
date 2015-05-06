@@ -7,5 +7,6 @@
       'ngRoute',
       'dndLists',
       'board',
-      'todos.api']);
+      'todos.api',
+      'todos.services']);
 }());
