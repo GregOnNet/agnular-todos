@@ -25,7 +25,8 @@
     "body-parser": "^1.9.2",
     "express": "^4.10.1",
     "handlebars": "^3.0.3",
-    "method-override": "^2.3.0"
+    "method-override": "^2.3.0",
+    "node-uuid": "^1.4.3"
   },
   "devDependencies": {
     "browser-sync": "^2.5.3",
